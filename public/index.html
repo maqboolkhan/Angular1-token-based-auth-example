@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Satellizer Example</title>
+</head>
+<body>
+    <div ng-controller="authCtrl as auth">
+        <div ng-if="!auth.isAuthenticated()">
+            <h1>Signup for Awesomeness </h1>
+            <form ng-submit="auth.signup()">
+                <input type="text" placeholder="Email.." ng-model="auth.user.email">
+                <br>
+                <input type="password" placeholder="Password.." ng-model="auth.user.password">
+                <br>
+                <input type="submit">
+            </form>
+        </div>
+        <div ng-if="auth.isAuthenticated()">
+            You are awesome
+            <button ng-click="auth.logout()">logout</button>
+            <button ng-click="auth.getUser()">Get Secret Agents</button>
+            <ul>
+                <li ng-repeat="user in auth.users" ng-bind="user.name"></li>
+            </ul>
+        </div>
+    </div>
+    <!--libs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/satellizer/0.14.1/satellizer.min.js"></script>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/controllers/authCtrl.js"></script>
+</body>
+</html>
